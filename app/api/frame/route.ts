@@ -1,4 +1,4 @@
-import { FrameRequest, getFrameHtmlResponse, FrameButtonMetadata, FrameMetadataType } from '@coinbase/onchainkit/frame';
+import { FrameRequest, getFrameHtmlResponse, FrameButtonMetadata } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
 
@@ -8,9 +8,12 @@ const darkModeImageUrl = "https://ipfs.io/ipfs/bafybeiakdyxvbtavc5jd4ygbo32sofgl
 
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
+  console.log('Received body:', body); // Debugging line
 
   const state = body.untrustedData?.state ? JSON.parse(decodeURIComponent(body.untrustedData.state)) : { mode: 'gm' };
   const mode = state.mode || 'gm';
+
+  console.log('Current mode:', mode); // Debugging line
 
   let imageUrl = gmImageUrl;
   let buttons: [FrameButtonMetadata, FrameButtonMetadata] = [
@@ -55,6 +58,9 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
       },
     ];
   }
+
+  console.log('Response image URL:', imageUrl); // Debugging line
+  console.log('Response buttons:', buttons); // Debugging line
 
   return new NextResponse(
     getFrameHtmlResponse({
