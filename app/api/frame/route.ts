@@ -1,4 +1,4 @@
-import { FrameRequest, getFrameMessage, getFrameHtmlResponse, FrameButtonMetadata } from '@coinbase/onchainkit/frame';
+import { FrameRequest, getFrameMessage, getFrameHtmlResponse, FrameButtonMetadata, FrameMetadataType } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
 
@@ -18,7 +18,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
   const mode = state.mode || 'gm';
 
   let imageUrl = gmImageUrl;
-  let buttons: [FrameButtonMetadata, ...FrameButtonMetadata[]] = [
+  let buttons: [FrameButtonMetadata, FrameButtonMetadata] = [
     {
       label: 'Light Mode',
       action: 'post',

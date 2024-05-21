@@ -2,24 +2,24 @@ import { getFrameMetadata } from '@coinbase/onchainkit/frame';
 import type { Metadata } from 'next';
 import { NEXT_PUBLIC_URL } from './config';
 
+const gmImageUrl = "https://ipfs.io/ipfs/bafybeiceudhd43v2h3iw5ppqp3i4i5l472xnahlwlrie3vb5pedferqqwu/";
+
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
-      label: 'Story time',
+      label: 'Light Mode',
+      action: 'post',
+      target: `${NEXT_PUBLIC_URL}/api/frame?state=${encodeURIComponent(JSON.stringify({ mode: 'light' }))}`,
     },
     {
-      action: 'tx',
-      label: 'Send Base Sepolia',
-      target: `${NEXT_PUBLIC_URL}/api/tx`,
-      postUrl: `${NEXT_PUBLIC_URL}/api/tx-success`,
+      label: 'Dark Mode',
+      action: 'post',
+      target: `${NEXT_PUBLIC_URL}/api/frame?state=${encodeURIComponent(JSON.stringify({ mode: 'dark' }))}`,
     },
   ],
   image: {
-    src: "https://ipfs.io/ipfs/bafybeiceudhd43v2h3iw5ppqp3i4i5l472xnahlwlrie3vb5pedferqqwu/", // Change initial image to GM image
+    src: gmImageUrl, // Initial image set to GM image
     aspectRatio: '1:1',
-  },
-  input: {
-    text: 'Tell me a story',
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
 });
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'zizzamia.xyz',
     description: 'LFG',
-    images: "https://ipfs.io/ipfs/bafybeiceudhd43v2h3iw5ppqp3i4i5l472xnahlwlrie3vb5pedferqqwu/", // Change initial image to GM image
+    images: [gmImageUrl], // Initial image set to GM image
   },
   other: {
     ...frameMetadata,
