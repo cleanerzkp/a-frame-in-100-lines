@@ -18,7 +18,7 @@ const frameMetadata = getFrameMetadata({
     },
   ],
   image: {
-    src: gmImageUrl, // Initial image set to GM image
+    src: gmImageUrl,
     aspectRatio: '1:1',
   },
   postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'zizzamia.xyz',
     description: 'LFG',
-    images: [gmImageUrl], // Initial image set to GM image
+    images: [gmImageUrl],
   },
   other: {
     ...frameMetadata,
