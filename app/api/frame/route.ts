@@ -2,6 +2,9 @@ import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/o
 import { NextRequest, NextResponse } from 'next/server';
 import { NEXT_PUBLIC_URL } from '../../config';
 
+const lightModeImageUrl = "https://ipfs.io/ipfs/bafybeiakdyxvbtavc5jd4ygbo32sofglr4mikbidv67btsd4567wjgolxu/lightmode.png";
+const darkModeImageUrl = "https://ipfs.io/ipfs/bafybeiakdyxvbtavc5jd4ygbo32sofglr4mikbidv67btsd4567wjgolxu/darkmode.png";
+
 async function getResponse(req: NextRequest): Promise<NextResponse> {
   const body: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(body, { neynarApiKey: 'NEYNAR_ONCHAIN_KIT' });
@@ -20,9 +23,6 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     console.error(e);
   }
 
-  /**
-   * Use this code to redirect to a different page
-   */
   if (message?.button === 3) {
     return NextResponse.redirect(
       'https://www.google.com/search?q=cute+dog+pictures&tbm=isch&source=lnms',
@@ -47,7 +47,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         },
       ],
       image: {
-        src: `${NEXT_PUBLIC_URL}/park-1.png`,
+        src: state.page % 2 === 0 ? lightModeImageUrl : darkModeImageUrl,
       },
       postUrl: `${NEXT_PUBLIC_URL}/api/frame`,
       state: {
