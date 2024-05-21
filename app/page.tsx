@@ -15,7 +15,7 @@ const frameMetadata = getFrameMetadata({
     },
   ],
   image: {
-    src: `${NEXT_PUBLIC_URL}/park-3.png`,
+    src: "https://ipfs.io/ipfs/bafybeiceudhd43v2h3iw5ppqp3i4i5l472xnahlwlrie3vb5pedferqqwu/", // Change initial image to GM image
     aspectRatio: '1:1',
   },
   input: {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'zizzamia.xyz',
     description: 'LFG',
-    images: [`${NEXT_PUBLIC_URL}/park-1.png`],
+    images: "https://ipfs.io/ipfs/bafybeiceudhd43v2h3iw5ppqp3i4i5l472xnahlwlrie3vb5pedferqqwu/", // Change initial image to GM image
   },
   other: {
     ...frameMetadata,
